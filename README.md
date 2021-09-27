@@ -1,2 +1,3 @@
 # game_engine
-Custom game engine. C++
+Custom game engine. C++.
+See presentation in docs/.
