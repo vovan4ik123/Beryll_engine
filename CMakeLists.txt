@@ -28,6 +28,7 @@ endif()
 add_subdirectory(libs/SDL2)
 add_subdirectory(libs/SDL2_image)
 add_subdirectory(libs/SDL2_mixer)
+add_subdirectory(libs/SDL2_net)
 add_subdirectory(libs/imgui)
 add_subdirectory(libs/assimp)
 add_subdirectory(libs/sqlite)
@@ -81,6 +82,7 @@ target_link_libraries(Beryll-static #target
                       SDL2-static # libs
                       SDL2_image-static
                       SDL2_mixer-static
+                      SDL2_net-static
                       ImGUI-static
                       assimp-static
                       sqlite3-static

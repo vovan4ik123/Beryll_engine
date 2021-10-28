@@ -166,8 +166,8 @@ namespace Beryll
                                 CollisionGroups collGroup,
                                 CollisionGroups collMask)
     {
-        BR_ASSERT((mass == 0.0f && collFlag != CollisionFlags::DYNAMIC) ||
-                  (mass > 0.0f && collFlag == CollisionFlags::DYNAMIC), "ConcaveMesh can be only static or kinematic. means mass = 0.");
+        BR_ASSERT(((mass == 0.0f && collFlag != CollisionFlags::DYNAMIC) ||
+                   (mass > 0.0f && collFlag == CollisionFlags::DYNAMIC)), "Wrong parameters for convex mesh.");
 
         glm::vec3 transl;
         glm::vec3 scale;

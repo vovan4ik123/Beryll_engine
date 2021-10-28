@@ -9,6 +9,8 @@
 
 #include "SDL2_mixer/SDL_mixer.h"
 
+#include "SDL2_net/SDL_net.h"
+
 #include "spdlog/spdlog.h"
 #include "spdlog/logger.h"
 #include "spdlog/sinks/android_sink.h"
@@ -18,6 +20,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtx/matrix_decompose.hpp"
 #include "glm/gtx/quaternion.hpp"
+#include "glm/ext/quaternion_trigonometric.hpp"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
