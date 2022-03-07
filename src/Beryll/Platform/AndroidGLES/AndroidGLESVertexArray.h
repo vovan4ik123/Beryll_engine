@@ -7,7 +7,7 @@ namespace Beryll
     class AndroidGLESVertexArray : public VertexArray
     {
     public:
-        virtual ~AndroidGLESVertexArray();
+        ~AndroidGLESVertexArray() override;
 
         void bind() override;
         void unBind() override;

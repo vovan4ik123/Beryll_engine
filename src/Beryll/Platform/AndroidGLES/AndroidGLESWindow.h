@@ -13,37 +13,37 @@ namespace Beryll
     class AndroidGLESWindow : public Window
     {
     public:
-        virtual ~AndroidGLESWindow();
+        ~AndroidGLESWindow() override;
 
     private:
         friend class Window;
         AndroidGLESWindow();
 
-        virtual void subReCreate() override;
-        virtual void subCheckOrientationChange() override; // if phone or tablet screen rotation allowed
+        void subReCreate() override;
+        void subCheckOrientationChange() override; // if phone or tablet screen rotation allowed
 
-        virtual uint32_t subGetScreenWidth() override { return m_screenWidth;}
-        virtual uint32_t subGetScreenHeight() override { return m_screenHeight;}
-        virtual SDL_Window* subGetWindow() override { return m_window; }
-        virtual SDL_GLContext* subGetGlContext() override { return &m_glContext; }
+        uint32_t subGetScreenWidth() override { return m_screenWidth;}
+        uint32_t subGetScreenHeight() override { return m_screenHeight;}
+        SDL_Window* subGetWindow() override { return m_window; }
+        SDL_GLContext* subGetGlContext() override { return &m_glContext; }
 
-        virtual void subSetClearColor(float r, float g, float b, float a) override
+        void subSetClearColor(float r, float g, float b, float a) override
         {
             glClearColor(r, g, b, a);
         }
-        virtual void subClear() override
+        void subClear() override
         {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //	| GL_STENCIL_BUFFER_BIT | GL_ACCUM_BUFFER_BIT);
         }
-        virtual void subFinishDraw() override // wait for finish all draw commands before swapWindow()
+        void subFinishDraw() override // wait for finish all draw commands before swapWindow()
         {
             glFinish();
         }
-        virtual void subFlushDraw() override // dont wait for finish draw commands before swapWindow()
+        void subFlushDraw() override // dont wait for finish draw commands before swapWindow()
         {
             glFlush();
         }
-        virtual void subSwapWindow() override
+        void subSwapWindow() override
         {
             SDL_GL_SwapWindow(m_window);
         }

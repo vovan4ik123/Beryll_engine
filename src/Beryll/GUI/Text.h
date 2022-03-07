@@ -12,12 +12,12 @@ namespace Beryll
     public:
         // position in percent 0...100% of screen
         Text(std::string text, float left, float top, bool background = false);
-        ~Text();
+        ~Text() override;
 
-        virtual void updateBeforePhysics() override;
-        virtual void updateAfterPhysics() override;
-        virtual void draw() override;
-        virtual void playSound() override;
+        void updateBeforePhysics() override;
+        void updateAfterPhysics() override;
+        void draw() override;
+        void playSound() override;
 
         void setFontColor(float r, float g, float b, float a) { m_fontColor = ImVec4{ r, g, b, a }; }
         void setBackgroundColor(float r, float g, float b, float a) { m_backgroundColor = ImVec4{ r, g, b, a }; }

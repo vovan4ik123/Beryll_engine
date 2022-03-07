@@ -27,13 +27,14 @@ namespace Beryll
         static void swapWindow() { m_window->subSwapWindow(); }
 
     protected:
+        // Subclasses should implement per specific platform
         virtual void subReCreate() = 0;
         virtual void subCheckOrientationChange() = 0;
 
         virtual uint32_t subGetScreenWidth() = 0;
         virtual uint32_t subGetScreenHeight() = 0;
         virtual SDL_Window* subGetWindow() = 0;
-        virtual SDL_GLContext* subGetGlContext() = 0;
+        virtual SDL_GLContext* subGetGlContext() = 0; // Platforms without OpenGL can return nullptr
 
         virtual void subSetClearColor(float r, float g, float b, float a) = 0;
         virtual void subClear() = 0;

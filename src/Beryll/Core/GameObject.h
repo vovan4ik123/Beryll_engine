@@ -19,7 +19,7 @@ namespace Beryll
 
         const std::string& getID() { return m_ID; }
         const glm::vec3& getPosition() { return m_position; }
-        const void setPosition(const glm::vec3& pos) { m_position = pos; }
+        void setPosition(const glm::vec3& pos) { m_position = pos; }
 
         bool getHasCollisionObject() { return m_hasCollisionObject; }
         bool getCanBeDisabled() { return m_canBeDisabled; }

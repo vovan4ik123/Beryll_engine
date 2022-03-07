@@ -8,7 +8,7 @@ namespace Beryll
     class GUIObject : public GameObject
     {
     public:
-        virtual ~GUIObject() {}
+        ~GUIObject() override {}
 
         // inherited pure virtual methods here
 

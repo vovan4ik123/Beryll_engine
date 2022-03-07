@@ -11,22 +11,22 @@ namespace Beryll
     class AndroidGLESImGUI : public MainImGUI
     {
     public:
-        virtual ~AndroidGLESImGUI();
+        ~AndroidGLESImGUI() override;
 
     private:
         friend class MainImGUI;
         AndroidGLESImGUI();
 
-        virtual void subBeginFrame() override;
-        virtual void subEndFrame() override;
+        void subBeginFrame() override;
+        void subEndFrame() override;
 
-        virtual float subGetGUIWidth() override;
-        virtual float subGetGUIHeight() override;
+        float subGetGUIWidth() override;
+        float subGetGUIHeight() override;
 
-        virtual void subSetDefaultFont(const char* path, float heightInPercent) override;
-        virtual void subSetButtonsFont(const char* path, float heightInPercent) override;
-        virtual void subSetCheckBoxesFont(const char* path, float heightInPercent) override;
-        virtual void subSetTextsFont(const char* path, float heightInPercent) override;
+        void subSetDefaultFont(const char* path, float heightInPercent) override;
+        void subSetButtonsFont(const char* path, float heightInPercent) override;
+        void subSetCheckBoxesFont(const char* path, float heightInPercent) override;
+        void subSetTextsFont(const char* path, float heightInPercent) override;
 
         static std::string m_defaultFontPath;
         static float m_defaultFontHeight; // in range 0 = 0%...1 = 100% of screen size

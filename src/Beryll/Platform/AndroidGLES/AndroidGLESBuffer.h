@@ -11,10 +11,10 @@ namespace Beryll
     {
     public:
         AndroidGLESVertexBuffer() = delete;
-        virtual ~AndroidGLESVertexBuffer();
+        ~AndroidGLESVertexBuffer() override;
 
-        virtual void bind() override;
-        virtual void unBind() override;
+        void bind() override;
+        void unBind() override;
 
     private:
         friend class Renderer;
@@ -31,10 +31,10 @@ namespace Beryll
     {
     public:
         AndroidGLESIndexBuffer() = delete;
-        virtual ~AndroidGLESIndexBuffer();
+        ~AndroidGLESIndexBuffer() override;
 
-        virtual void bind() override;
-        virtual void unBind() override;
+        void bind() override;
+        void unBind() override;
 
     private:
         friend class Renderer;

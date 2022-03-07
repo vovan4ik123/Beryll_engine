@@ -11,10 +11,10 @@ namespace Beryll
     {
     public:
         AndroidGLESTexture() = delete;
-        virtual ~AndroidGLESTexture();
+        ~AndroidGLESTexture() override;
 
-        virtual void bind() override;
-        virtual void unBind() override;
+        void bind() override;
+        void unBind() override;
 
     private:
         friend class Renderer;

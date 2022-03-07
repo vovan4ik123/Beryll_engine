@@ -7,7 +7,7 @@ namespace Beryll
     class SceneObject : public GameObject
     {
     public:
-        virtual ~SceneObject() {}
+        ~SceneObject() override {}
 
         // inherited pure virtual methods here
 

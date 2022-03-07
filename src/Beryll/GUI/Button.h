@@ -10,12 +10,12 @@ namespace Beryll
     public:
         // position and size in percent 0...100% of screen
         Button(const char* text, float left, float top, float width, float height, bool actRepeat = false);
-        ~Button();
+        ~Button() override;
 
-        virtual void updateBeforePhysics() override;
-        virtual void updateAfterPhysics() override;
-        virtual void draw() override;
-        virtual void playSound() override;
+        void updateBeforePhysics() override;
+        void updateAfterPhysics() override;
+        void draw() override;
+        void playSound() override;
 
         bool getIsPressed() { return m_pressed; }
 

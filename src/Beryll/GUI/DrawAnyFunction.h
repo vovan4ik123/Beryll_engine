@@ -12,12 +12,12 @@ namespace Beryll
     {
     public:
         DrawAnyFunction(std::function<void()> fn);
-        ~DrawAnyFunction();
+        ~DrawAnyFunction() override;
 
-        virtual void updateBeforePhysics() override;
-        virtual void updateAfterPhysics() override;
-        virtual void draw() override;
-        virtual void playSound() override;
+        void updateBeforePhysics() override;
+        void updateAfterPhysics() override;
+        void draw() override;
+        void playSound() override;
 
     private:
         std::function<void()> m_action;

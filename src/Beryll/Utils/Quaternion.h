@@ -9,10 +9,12 @@ namespace Beryll
     // w=1 x=0 y=0 z=0 identity quaternion = no rotation
 
     // for make vector unit:
-    // std::sqrt(x*x + y*y + z*z + w*w) - vector magnitude = square root
-    // x / square root - divide all components by square root(magnitude)
-    // 1 / std::sqrt(x*x + y*y + z*z + w*w) - inverse square root
-    // x * inverse square root - or multiply by inverse square root
+    // 1.
+    // std::sqrt(x*x + y*y + z*z + w*w) - calculate vector magnitude = square root
+    // w,x,y,z / square root - divide all components by square root(magnitude)
+    // 2.
+    // 1 / std::sqrt(x*x + y*y + z*z + w*w) - calculate inverse square root once
+    // x * inverse square root - multiply by inverse square root (faster than division)
 
     // if we need keep vector original magnitude we can make four component vector and store it in fourth component
 

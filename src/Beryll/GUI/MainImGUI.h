@@ -25,7 +25,7 @@ namespace Beryll
         static float getGUIHeight() { return m_imGUI->subGetGUIHeight(); }
 
         /*
-        * path must skip aseets/ folder and starts from next folder inside aseets/
+        * path must skip assets/ folder and starts from next folder inside assets/
         * heightPercent - font height in percent 0%...100% of screen
         */
         static void setDefaultFont(const char* path, float heightInPercent) { m_imGUI->subSetButtonsFont(path, heightInPercent); }

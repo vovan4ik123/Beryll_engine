@@ -10,12 +10,12 @@ namespace Beryll
     public:
         // position in percent 0...100% of screen
         CheckBox(std::string text, float left, float top);
-        ~CheckBox();
+        ~CheckBox() override;
 
-        virtual void updateBeforePhysics() override;
-        virtual void updateAfterPhysics() override;
-        virtual void draw() override;
-        virtual void playSound() override;
+        void updateBeforePhysics() override;
+        void updateAfterPhysics() override;
+        void draw() override;
+        void playSound() override;
 
         bool getIsChecked() { return m_checked; }
 

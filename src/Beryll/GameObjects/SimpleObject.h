@@ -27,12 +27,12 @@ namespace Beryll
                      const char* fragmentPath,
                      const char* diffSampler,
                      const char* specSampler = nullptr);
-        virtual ~SimpleObject();
+        ~SimpleObject() override;
 
-        virtual void updateBeforePhysics() override;
-        virtual void updateAfterPhysics() override;
-        virtual void draw() override;
-        virtual void playSound() override;
+        void updateBeforePhysics() override;
+        void updateAfterPhysics() override;
+        void draw() override;
+        void playSound() override;
 
     protected:
         std::shared_ptr<VertexBuffer> m_vertexPosBuffer;
