@@ -115,8 +115,16 @@ namespace Beryll
                 m_resolutionFactor = res;
         }
 
-        static void disableSimulation() { m_simulationEnabled = false; }
-        static void enableSimulation() { m_timer.reset(); m_simulationEnabled = true; }
+        static void disableSimulation()
+        {
+            m_simulationEnabled = false;
+        }
+
+        static void enableSimulation()
+        {
+            m_timer.reset();
+            m_simulationEnabled = true;
+        }
 
         static void addObject(const std::vector<glm::vec3>& vertices,
                               const std::vector<uint32_t>& indices,

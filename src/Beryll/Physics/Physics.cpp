@@ -37,9 +37,12 @@ namespace Beryll
 
     void Physics::simulate()
     {
-        // dont simulate if disabled
+        // dont simulate if disabled or no objects
         // or time after m_timer.reset() is very short (for example we return from state (pause, ...) where simulation was disabled)
-        if(!m_simulationEnabled || m_timer.elapsedSec() < 0.003f) { return; }
+        if(!m_simulationEnabled || m_timer.elapsedSec() < 0.003f || m_dynamicsWorld->getNumCollisionObjects() == 0)
+        {
+            return;
+        }
 
         BR_ASSERT((m_dynamicsWorld != nullptr), "Create physics before simulate");
         m_collisionPairs.clear();
