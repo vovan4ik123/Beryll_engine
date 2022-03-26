@@ -9,12 +9,11 @@ namespace Beryll
 
     void SoundsManager::create()
     {
-        // MIX_DEFAULT_FREQUENCY = sample rate = frequensy = speed playing				// size (speed playing )
-        if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) == -1)
+        // MIX_DEFAULT_FREQUENCY = sample rate = frequency = speed playing				// size (speed playing )
+        if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_CHANNELS, 1024) == -1)
+        {
             BR_ASSERT(false, "SDL mixer init error");
-
-
-        Mix_AllocateChannels(8);
+        }
     }
 
     void SoundsManager::loadWAV(const char* path)

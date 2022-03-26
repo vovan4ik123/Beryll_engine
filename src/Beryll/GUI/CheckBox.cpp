@@ -46,7 +46,7 @@ namespace Beryll
         ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, m_checkSquareColor);
         ImGui::PushStyleColor(ImGuiCol_FrameBgActive, m_checkSquareColor);
 
-        ImGui::SetNextWindowPos(ImVec2(m_leftPos * MainImGUI::getGUIWidth(), m_topPos * MainImGUI::getGUIHeight()));
+        ImGui::SetNextWindowPos(ImVec2(m_leftPos * MainImGUI::getInstance()->getGUIWidth(), m_topPos * MainImGUI::getInstance()->getGUIHeight()));
         ImGui::Begin(m_ID.c_str(), nullptr, m_noBackgroundNoFrame);
 
         if(font)
@@ -75,7 +75,7 @@ namespace Beryll
 
     void CheckBox::playSound()
     {
-        if( !m_soundID.empty() && m_needPlaySound)
+        if(!m_soundID.empty() && m_needPlaySound)
         {
             m_needPlaySound = false;
             SoundsManager::playWAV(m_soundID);

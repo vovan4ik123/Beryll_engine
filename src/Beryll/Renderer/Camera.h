@@ -89,10 +89,10 @@ namespace Beryll
             return glm::lookAt(m_cameraPos, m_cameraPos + m_cameraDirection, m_cameraUp);
         }
 
-        static glm::mat4 getPerspective3D(const float& screnWidth, const float& screenHeight)
+        static glm::mat4 getPerspective3D(const float& screenWidth, const float& screenHeight)
         {
             return glm::perspectiveFov(m_fovRadians,
-                                       screnWidth,
+                                       screenWidth,
                                        screenHeight,
                                        m_perspNearClipPlane,
                                        m_perspFarClipPlane);

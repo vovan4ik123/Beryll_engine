@@ -37,9 +37,9 @@ namespace Beryll
 
     void Physics::simulate()
     {
-        // dont simulate if dissabled
-        // or time after m_timer.reset() is very short (for example we return from state (pause, ...) where simulation was dissabled)
-        if(!m_simulationEnabled || m_timer.elapsedSec() < 0.002f) { return; }
+        // dont simulate if disabled
+        // or time after m_timer.reset() is very short (for example we return from state (pause, ...) where simulation was disabled)
+        if(!m_simulationEnabled || m_timer.elapsedSec() < 0.003f) { return; }
 
         BR_ASSERT((m_dynamicsWorld != nullptr), "Create physics before simulate");
         m_collisionPairs.clear();

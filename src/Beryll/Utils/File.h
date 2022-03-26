@@ -30,11 +30,13 @@ namespace Beryll
                 readTotal += read;
                 buf += read;
             }
+
             SDL_RWclose(rw);
+
             if (readTotal != resSize)
             {
                 delete[] res;
-                BR_ASSERT(false, "nb_read_total != resSize after loading {0}", filepath);
+                BR_ASSERT(false, "readTotal != resSize after loading {0}", filepath);
             }
 
             res[resSize] = '\0';

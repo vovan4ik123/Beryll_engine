@@ -9,7 +9,6 @@ namespace Beryll
 
     void MainImGUI::create()
     {
-        BR_INFO("MainImGUI::create()");
         if(m_imGUI) { return; }
 
         if(GameLoop::getPlatform() == Platform::ANDROID_GLES)
@@ -18,22 +17,7 @@ namespace Beryll
         }
         else
         {
-            BR_ASSERT(false, "Can not create ImGUI");
-        }
-    }
-
-    void MainImGUI::reCreate()
-    {
-        BR_INFO("MainImGUI::reCreate()");
-
-        if(GameLoop::getPlatform() == Platform::ANDROID_GLES)
-        {
-            m_imGUI = nullptr; // first call destructor
-            m_imGUI = std::unique_ptr<MainImGUI>(new AndroidGLESImGUI());
-        }
-        else
-        {
-            BR_ASSERT(false, "Can not reCreate ImGUI");
+            BR_ASSERT(false, "Can not create ImGUI. Unknown platform.");
         }
     }
 }

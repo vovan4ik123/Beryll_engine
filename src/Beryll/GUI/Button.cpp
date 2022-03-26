@@ -95,18 +95,18 @@ namespace Beryll
         ImGui::PushStyleColor(ImGuiCol_Text, m_fontColor);
 
 
-        ImGui::SetNextWindowPos(ImVec2(m_leftPos * MainImGUI::getGUIWidth(), m_topPos * MainImGUI::getGUIHeight()));
+        ImGui::SetNextWindowPos(ImVec2(m_leftPos * MainImGUI::getInstance()->getGUIWidth(), m_topPos * MainImGUI::getInstance()->getGUIHeight()));
         ImGui::Begin(m_ID.c_str(), nullptr, m_noBackgroundNoFrame);
 
         if(font)
         {
             ImGui::PushFont(font);
-            ImGui::Button(m_text.c_str(), ImVec2(m_width * MainImGUI::getGUIWidth(), m_height * MainImGUI::getGUIHeight()), ImGuiButtonFlags_PressedOnClick, &m_touched);
+            ImGui::Button(m_text.c_str(), ImVec2(m_width * MainImGUI::getInstance()->getGUIWidth(), m_height * MainImGUI::getInstance()->getGUIHeight()), ImGuiButtonFlags_PressedOnClick, &m_touched);
             ImGui::PopFont();
         }
         else
         {
-            ImGui::Button(m_text.c_str(), ImVec2(m_width * MainImGUI::getGUIWidth(), m_height * MainImGUI::getGUIHeight()), ImGuiButtonFlags_PressedOnClick, &m_touched);
+            ImGui::Button(m_text.c_str(), ImVec2(m_width * MainImGUI::getInstance()->getGUIWidth(), m_height * MainImGUI::getInstance()->getGUIHeight()), ImGuiButtonFlags_PressedOnClick, &m_touched);
         }
 
         ImGui::End();

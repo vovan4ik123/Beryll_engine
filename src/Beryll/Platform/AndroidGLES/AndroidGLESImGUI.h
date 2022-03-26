@@ -13,35 +13,31 @@ namespace Beryll
     public:
         ~AndroidGLESImGUI() override;
 
+        void reCreate() override;
+
+        void beginFrame() override;
+        void endFrame() override;
+
+        float getGUIWidth() override;
+        float getGUIHeight() override;
+
+        /*
+        * path must skip assets/ folder and starts from next folder inside assets/
+        * heightPercent - font height in percent 0%...100% of screen
+        */
+        void setDefaultFont(const char* path, float heightInPercent) override;
+        void setButtonsFont(const char* path, float heightInPercent) override;
+        void setCheckBoxesFont(const char* path, float heightInPercent) override;
+        void setTextsFont(const char* path, float heightInPercent) override;
+
     private:
         friend class MainImGUI;
         AndroidGLESImGUI();
 
-        void subBeginFrame() override;
-        void subEndFrame() override;
+        void init();
+        void destroy();
 
-        float subGetGUIWidth() override;
-        float subGetGUIHeight() override;
-
-        void subSetDefaultFont(const char* path, float heightInPercent) override;
-        void subSetButtonsFont(const char* path, float heightInPercent) override;
-        void subSetCheckBoxesFont(const char* path, float heightInPercent) override;
-        void subSetTextsFont(const char* path, float heightInPercent) override;
-
-        static std::string m_defaultFontPath;
-        static float m_defaultFontHeight; // in range 0 = 0%...1 = 100% of screen size
-
-        // Hide methods from base class
-        static void create() { BR_ASSERT(false, "Use base class methods"); }
-        static void reCreate() { BR_ASSERT(false, "Use base class methods"); }
-        static void beginFrame() { BR_ASSERT(false, "Use base class methods"); }
-        static void endFrame() { BR_ASSERT(false, "Use base class methods"); }
-        static void setDefaultFont(ImFont* f) { BR_ASSERT(false, "Use base class methods"); }
-        static float getGUIWidth() { BR_ASSERT(false, "Use base class methods"); return 0.0f; }
-        static float getGUIHeight() { BR_ASSERT(false, "Use base class methods"); return 0.0f; }
-        static void setDefaultFont(const char* path, float heightInPercent) { BR_ASSERT(false, "Use base class methods"); }
-        static void setButtonsFont(const char* path, float heightInPercent) { BR_ASSERT(false, "Use base class methods"); }
-        static void setCheckBoxesFont(const char* path, float heightInPercent) { BR_ASSERT(false, "Use base class methods"); }
-        static void setTextsFont(const char* path, float heightInPercent) { BR_ASSERT(false, "Use base class methods"); }
+        std::string m_defaultFontPath;
+        float m_defaultFontHeight = 0.0f; // in range 0 = 0%...1 = 100% of screen size
     };
 }

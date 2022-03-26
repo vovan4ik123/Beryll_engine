@@ -26,7 +26,7 @@ namespace Beryll
         m_platform = p;
 
         Window::create();
-        Window::setClearColor(0.8f, 0.0f, 0.8f, 1.0f);
+        Window::getInstance()->setClearColor(0.8f, 0.0f, 0.8f, 1.0f);
 
         MainImGUI::create();
 
@@ -45,37 +45,38 @@ namespace Beryll
 
         while(m_isRun)
         {
-            TimeStep::fixateTime();
+            TimeStep::fixateTime(); // fixate time of last finished game loop
             m_frameStart = TimeStep::getMillisecFromStart();
 
+        // Check user input
             EventHandler::resetEvents(EventID::ALL_EVENTS);
             EventHandler::loadEvents();
 
         // Update layers start
-            Window::checkOrientationChange();
-            // set positions of objects here
+            Window::getInstance()->checkOrientationChange();
+            // set positions of objects here based on user input
             GameStateMachine::updateBeforePhysics();
 
             Physics::simulate();
 
-            // read positions after simulation here
+            // read positions of objects after simulation here
             // prefer update camera properties here
             GameStateMachine::updateAfterPhysics();
         // Update layers finish
 
         // Update camera (immediately before draw)
             // Dont set any camera attributes after this call (set in updateAfterPhysics())
-            Camera::update3DCamera(Window::getScreenWidth(), Window::getScreenHeight());
+            Camera::update3DCamera(Window::getInstance()->getScreenWidth(), Window::getInstance()->getScreenHeight());
 
         // Draw start
-            Window::clear();
-            MainImGUI::beginFrame();
+            Window::getInstance()->clear();
+            MainImGUI::getInstance()->beginFrame();
 
             GameStateMachine::draw();
 
-            Window::finishDraw();
-            MainImGUI::endFrame();
-            Window::swapWindow();
+            Window::getInstance()->finishDraw();
+            MainImGUI::getInstance()->endFrame();
+            Window::getInstance()->swapWindow();
         // Draw finish
 
         // PlaySound start
@@ -90,6 +91,6 @@ namespace Beryll
             }
         }
 
-        BR_INFO("GameLoop stoped");
+        BR_INFO("GameLoop stopped");
     }
 }

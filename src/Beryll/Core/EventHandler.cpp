@@ -87,9 +87,9 @@ namespace Beryll
 
 //TOUCH EVENT
                 case SDL_FINGERDOWN:
-                    m_fingers.push_back(Finger{glm::vec2(event.tfinger.x, event.tfinger.y),
-                                               glm::vec2(event.tfinger.x * MainImGUI::getGUIWidth(), event.tfinger.y * MainImGUI::getGUIHeight()),
-                                               glm::vec2(event.tfinger.x * Window::getScreenWidth(), event.tfinger.y * Window::getScreenHeight()),
+                    m_fingers.emplace_back(Finger{glm::vec2(event.tfinger.x, event.tfinger.y),
+                                                 glm::vec2(event.tfinger.x * MainImGUI::getInstance()->getGUIWidth(), event.tfinger.y * MainImGUI::getInstance()->getGUIHeight()),
+                                                 glm::vec2(event.tfinger.x * Window::getInstance()->getScreenWidth(), event.tfinger.y * Window::getInstance()->getScreenHeight()),
                                                   false,
                                                   true,
                                                   event.tfinger.fingerId});
@@ -113,11 +113,11 @@ namespace Beryll
                             (*it).normalizedPos.x = event.tfinger.x;
                             (*it).normalizedPos.y = event.tfinger.y;
 
-                            (*it).ImGuiScreenPos.x = event.tfinger.x * MainImGUI::getGUIWidth();
-                            (*it).ImGuiScreenPos.y = event.tfinger.y * MainImGUI::getGUIHeight();
+                            (*it).ImGuiScreenPos.x = event.tfinger.x * MainImGUI::getInstance()->getGUIWidth();
+                            (*it).ImGuiScreenPos.y = event.tfinger.y * MainImGUI::getInstance()->getGUIHeight();
 
-                            (*it).SDL2ScreenPos.x = event.tfinger.x * Window::getScreenWidth();
-                            (*it).SDL2ScreenPos.y = event.tfinger.y * Window::getScreenHeight();
+                            (*it).SDL2ScreenPos.x = event.tfinger.x * Window::getInstance()->getScreenWidth();
+                            (*it).SDL2ScreenPos.y = event.tfinger.y * Window::getInstance()->getScreenHeight();
                         }
                         break;
                     }

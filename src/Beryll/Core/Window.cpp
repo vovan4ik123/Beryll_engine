@@ -1,7 +1,6 @@
 #include "Window.h"
 #include "Beryll/Platform/AndroidGLES/AndroidGLESWindow.h"
 #include "Beryll/Core/GameLoop.h"
-#include "Beryll/Core/Log.h"
 
 namespace Beryll
 {
@@ -17,7 +16,7 @@ namespace Beryll
         }
         else
         {
-            BR_ASSERT(false, "Can not create Window");
+            BR_ASSERT(false, "Can not create Window. Unknown platform.");
         }
     }
 }

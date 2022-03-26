@@ -40,10 +40,10 @@ namespace Beryll
     private:
         friend int ::main(int argc, char *argv[]);
 
-        static Platform m_platform;
         static void create(Platform p);
-
         static void run();
+
+        static Platform m_platform;
         static bool m_isRun;
 
         static uint32_t m_loopTime; // in millisec

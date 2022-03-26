@@ -15,7 +15,7 @@ namespace Beryll
 
         static float getSecFromStart()
         {
-            return static_cast<float>(SDL_GetTicks()) / 1000.0f;
+            return static_cast<float>(getMillisecFromStart()) / 1000.0f;
         }
 
         static void sleep(uint32_t millisec)
@@ -25,13 +25,13 @@ namespace Beryll
 
         static void fixateTime()
         {
-            m_timeStepMIlliSec = SDL_GetTicks() - m_currentFrameStart;
+            m_timeStepMIlliSec = getMillisecFromStart() - m_currentStepStart;
             m_timeStepSec = m_timeStepMIlliSec / 1000.0f;
 
-            m_currentFrameStart = SDL_GetTicks();
+            m_currentStepStart = getMillisecFromStart();
         }
 
-        static float getTimeStepMilliSec()
+        static uint32_t getTimeStepMilliSec()
         {
             return m_timeStepMIlliSec;
         }
@@ -42,8 +42,8 @@ namespace Beryll
         }
 
     private:
-        static float m_currentFrameStart; // time in millisec
-        static float m_timeStepMIlliSec; // time between previous frame start and current frame start
-        static float m_timeStepSec; // time between previous frame start and current frame start
+        static uint32_t m_currentStepStart; // time in millisec
+        static uint32_t m_timeStepMIlliSec; // time between two last fixateTime() call in millisec
+        static float m_timeStepSec; // time between two last fixateTime() call in sec
     };
 }

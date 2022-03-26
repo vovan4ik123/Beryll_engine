@@ -7,15 +7,9 @@ namespace Beryll
     class Timer
     {
     public:
-        Timer()
-        {
-            reset();
-        }
+        Timer() { }
 
-        ~Timer()
-        {
-
-        }
+        ~Timer() { }
 
         void reset()
         {
@@ -24,19 +18,15 @@ namespace Beryll
 
         float elapsedMilliSec()
         {
-            std::chrono::duration<float, std::milli> elapsedMilliSec = std::chrono::system_clock::now() - m_start;
-
-            return elapsedMilliSec.count();
+            return std::chrono::duration<float, std::milli>(std::chrono::system_clock::now() - m_start).count();
         }
 
         float elapsedSec()
         {
-            std::chrono::duration<float> elapsedSec = std::chrono::system_clock::now() - m_start;
-
-            return elapsedSec.count();
+            return std::chrono::duration<float>(std::chrono::system_clock::now() - m_start).count();
         }
 
     private:
-        std::chrono::time_point<std::chrono::system_clock> m_start{};
+        std::chrono::time_point<std::chrono::system_clock> m_start = std::chrono::system_clock::now();
     };
 }

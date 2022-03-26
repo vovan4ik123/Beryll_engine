@@ -79,7 +79,7 @@ namespace Beryll
         BR_INFO("AndroidGLESWindow destroyed + SDL_Quit");
     }
 
-    void AndroidGLESWindow::subReCreate()
+    void AndroidGLESWindow::reCreate()
     {
         SDL_DestroyWindow(m_window);
 
@@ -110,13 +110,13 @@ namespace Beryll
         BR_INFO("AndroidGLESWindow re created. width:{0}, height:{1}", m_screenWidth, m_screenHeight);
     }
 
-    void AndroidGLESWindow::subCheckOrientationChange()
+    void AndroidGLESWindow::checkOrientationChange()
     {
         if(EventHandler::checkEvent(EventID::DISPLAY_ORIENTATION_CHANGE))
         {
             EventHandler::resetEvents(EventID::DISPLAY_ORIENTATION_CHANGE);
-            Window::reCreate();
-            MainImGUI::reCreate();
+            Window::getInstance()->reCreate();
+            MainImGUI::getInstance()->reCreate();
         }
     }
 }
