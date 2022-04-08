@@ -18,27 +18,20 @@ namespace Beryll
 
     void SoundsManager::loadWAV(const char* path)
     {
-        std::string strPath = path;
+        const std::string strPath = path;
+        BR_ASSERT((strPath.find_last_of('.') != std::string::npos), "Sound does not have extension:{0}", strPath);
 
-        try
-        {
-            std::string extension = strPath.substr(strPath.find_last_of('.'));
-
-            BR_ASSERT((extension == ".wav"), "loadWAV() loads only .wav sounds");
-        }
-        catch(const std::out_of_range& e)
-        {
-            BR_ASSERT(false, "Sound does not have extension {0}", strPath);
-        }
+        std::string extension = strPath.substr(strPath.find_last_of('.'));
+        BR_ASSERT((extension == ".wav"), "loadWAV() loads only .wav sounds");
 
         auto result =  m_WAVs.find(strPath);
         if(result != m_WAVs.end()) { return; }
 
         SDL_RWops* rw = SDL_RWFromFile(strPath.c_str(), "rb");
-        BR_ASSERT((rw != nullptr), "Load WAV failed: {0}", strPath);
+        BR_ASSERT((rw != nullptr), "Load WAV failed:{0}", strPath);
 
         Mix_Chunk* wavSound = Mix_LoadWAV_RW(rw, 1);
-        BR_ASSERT((wavSound != nullptr), "Create Mix_Chunk failed: {0}", strPath);
+        BR_ASSERT((wavSound != nullptr), "Create Mix_Chunk failed:{0}", strPath);
 
         Mix_VolumeChunk(wavSound, MIX_MAX_VOLUME / 2);
 
@@ -56,27 +49,20 @@ namespace Beryll
 
     void SoundsManager::loadBackgroundMP3(const char* path)
     {
-        std::string strPath = path;
+        const std::string strPath = path;
+        BR_ASSERT((strPath.find_last_of('.') != std::string::npos), "Sound does not have extension:{0}", strPath);
 
-        try
-        {
-            std::string extension = strPath.substr(strPath.find_last_of('.'));
-
-            BR_ASSERT((extension == ".mp3"), "loadBackgroundMP3() loads only .mp3 sounds");
-        }
-        catch(const std::out_of_range& e)
-        {
-            BR_ASSERT(false, "Sound does not have extension {0}", strPath);
-        }
+        std::string extension = strPath.substr(strPath.find_last_of('.'));
+        BR_ASSERT((extension == ".mp3"), "loadBackgroundMP3() loads only .mp3 sounds");
 
         auto result =  m_MP3s.find(strPath);
         if(result != m_MP3s.end()) { return; }
 
         SDL_RWops* rw = SDL_RWFromFile(strPath.c_str(), "rb");
-        BR_ASSERT((rw != nullptr), "Load MP3 failed: {0}", strPath);
+        BR_ASSERT((rw != nullptr), "Load MP3 failed:{0}", strPath);
 
         Mix_Music* music = Mix_LoadMUS_RW(rw, 1);
-        BR_ASSERT((music != nullptr), "Create Mix_Music failed: {0}", strPath);
+        BR_ASSERT((music != nullptr), "Create Mix_Music failed:{0}", strPath);
 
         Mix_VolumeMusic(64); // volume from 0 to 128
 

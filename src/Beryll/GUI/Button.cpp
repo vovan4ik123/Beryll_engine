@@ -122,5 +122,4 @@ namespace Beryll
             SoundsManager::playWAV(m_soundID);
         }
     }
-
 }

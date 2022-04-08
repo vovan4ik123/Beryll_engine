@@ -102,46 +102,35 @@ namespace Beryll
         {
             aiMaterial* material = m_scene->mMaterials[m_scene->mMeshes[0]->mMaterialIndex];
 
-            std::string mP = modelPath;
+            const std::string mP = modelPath;
+            BR_ASSERT((mP.find_last_of('/') != std::string::npos), "Texture + model must be in folder:{0}", mP);
+
             std::string texturePath;
 
             if(material->GetTextureCount(aiTextureType_DIFFUSE) > 0)
             {
                 aiString textName;
                 material->GetTexture(aiTextureType_DIFFUSE, 0, &textName);
-                try
-                {
-                    texturePath = mP.substr(0, mP.find_last_of('/'));
-                }
-                catch(const std::out_of_range& e)
-                {
-                    BR_ASSERT(false, "Texture must be in folder");
-                }
 
+                texturePath = mP.substr(0, mP.find_last_of('/'));
                 texturePath += '/';
                 texturePath += textName.C_Str();
-                BR_INFO("Diffuse texture here: {0}", texturePath);
+                BR_INFO("Diffuse texture here:{0}", texturePath);
 
                 m_shader->activateTexture(diffSampler, m_diffSamplerIndexInShader);
 
                 m_diffTexture = Renderer::createTexture(texturePath.c_str(), m_diffSamplerIndexInShader);
             }
+
             if(material->GetTextureCount(aiTextureType_SPECULAR) > 0 && specSampler != nullptr)
             {
                 aiString textName;
                 material->GetTexture(aiTextureType_SPECULAR, 0, &textName);
-                try
-                {
-                    texturePath = mP.substr(0, mP.find_last_of('/'));
-                }
-                catch(const std::out_of_range& e)
-                {
-                    BR_ASSERT(false, "Texture must be in folder");
-                }
 
+                texturePath = mP.substr(0, mP.find_last_of('/'));
                 texturePath += '/';
                 texturePath += textName.C_Str();
-                BR_INFO("Specular texture here: {0}", texturePath);
+                BR_INFO("Specular texture here:{0}", texturePath);
 
                 m_shader->activateTexture(specSampler, m_specSamplerIndexInShader);
 

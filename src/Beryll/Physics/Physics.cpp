@@ -37,6 +37,8 @@ namespace Beryll
 
     void Physics::simulate()
     {
+        BR_ASSERT((m_dynamicsWorld != nullptr), "Create physics before simulate");
+
         // dont simulate if disabled or no objects
         // or time after m_timer.reset() is very short (for example we return from state (pause, ...) where simulation was disabled)
         if(!m_simulationEnabled || m_timer.elapsedSec() < 0.003f || m_dynamicsWorld->getNumCollisionObjects() == 0)
@@ -44,7 +46,6 @@ namespace Beryll
             return;
         }
 
-        BR_ASSERT((m_dynamicsWorld != nullptr), "Create physics before simulate");
         m_collisionPairs.clear();
 
         // https://stackoverflow.com/questions/22825391/stepsimulation-parameters-in-bullet-physics
@@ -151,6 +152,7 @@ namespace Beryll
 
         if(collFlag == CollisionFlags::KINEMATIC)
             body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+
         if(wantCallBack)
             body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
 
@@ -206,6 +208,7 @@ namespace Beryll
 
         if(collFlag == CollisionFlags::KINEMATIC)
             body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+
         if(wantCallBack)
             body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_CUSTOM_MATERIAL_CALLBACK);
         

@@ -26,7 +26,7 @@ namespace Beryll
         }
         else
         {
-            BR_ASSERT(false, "dont push layer with same ID again: {0}", layer->getLayerID());
+            BR_ASSERT(false, "Dont push layer with same ID again:{0}", layer->getLayerID());
         }
     }
 
@@ -41,7 +41,7 @@ namespace Beryll
         }
         else
         {
-            BR_ASSERT(false, "dont push layer with same ID again: {0}", overlay->getLayerID());
+            BR_ASSERT(false, "Dont push layer with same ID again:{0}", overlay->getLayerID());
         }
     }
 

@@ -19,7 +19,7 @@ namespace Beryll
     public:
         virtual ~Layer() {}
 
-        virtual void updateBeforePhysics() = 0; // handle users input, move objects, Physics::setTransforms() here
+        virtual void updateBeforePhysics() = 0; // handle users input, move objects here
         virtual void updateAfterPhysics() = 0; // update positions after symulation, resolve collisions, Physics::getTransforms() here
         virtual void draw() = 0; // draw gameobjects
         virtual void playSound() = 0; // play sounds

@@ -10,37 +10,30 @@ namespace Beryll
 {
     AndroidGLESTexture::AndroidGLESTexture(const char* path, uint32_t indexInShader)
     {
-        try
-        {
-            std::string strPath = path;
-            std::string extension = strPath.substr(strPath.find_last_of('.'));
+        const std::string strPath = path;
+        BR_ASSERT((strPath.find_last_of('.') != std::string::npos), "Texture does not have extension:{0}", strPath);
 
-            BR_ASSERT(((extension == ".png") || (extension == ".jpg")), "Supported only .png or .jpg textures");
-        }
-        catch(const std::out_of_range& e)
-        {
-            BR_ASSERT(false, "Texture does not have extension {0}", path);
-        }
+        std::string extension = strPath.substr(strPath.find_last_of('.'));
+        BR_ASSERT(((extension == ".png") || (extension == ".jpg")), "Supported only .png or .jpg textures:{0}", strPath);
 
         // only two sampler2D supports for now (0 = diffuse, 1 = specular)
         BR_ASSERT(((indexInShader == 0) || (indexInShader == 1)), "Pass correct index of sampler2D for texture");
 
         m_indexInShader = indexInShader;
 
-        auto result =  m_textures.find(std::string(path));
+        auto result =  m_textures.find(strPath);
         if(result != m_textures.end())
         {
-            // texture was added before
-            // use it
+            // texture was added before, use it
             m_textureID = result->second;
             return;
         }
 
-        SDL_RWops* rw = SDL_RWFromFile(path, "rb");
-        BR_ASSERT((rw != nullptr), "Load texture failed: {0}", path);
+        SDL_RWops* rw = SDL_RWFromFile(strPath.c_str(), "rb");
+        BR_ASSERT((rw != nullptr), "Load texture failed:{0}", strPath);
 
         SDL_Surface* surface = IMG_Load_RW(rw, 1);
-        BR_ASSERT((surface != nullptr), "Create surface failed: {0}", path);
+        BR_ASSERT((surface != nullptr), "Create surface failed:{0}", strPath);
 
         glGenTextures(1, &m_textureID);
         glBindTexture(GL_TEXTURE_2D, m_textureID);
@@ -58,7 +51,7 @@ namespace Beryll
 
         glBindTexture(GL_TEXTURE_2D, 0);
 
-        m_textures.insert(std::make_pair(path, m_textureID)); // add to map
+        m_textures.insert(std::make_pair(strPath, m_textureID)); // add to map
     }
 
     AndroidGLESTexture::~AndroidGLESTexture()

@@ -105,7 +105,7 @@ namespace Beryll
 
 // Exapmles
 // ... = formatted string + parameters or usual string
-// BR_INFO("Info with param: {0} second: {1} {2} {3} -- == -{4}", "info1", 434.344f, 3, 4, 5);
+// BR_INFO("Info with param:{0} second:{1} {2} {3} -- == -{4}", "info1", 434.344f, 3, 4, 5);
 // BR_WARN("Warn with param {0}", "warn1");
 // BR_ERROR("Error with param {0}", "error1");
 // BR_ASSERT(false, "message before assert {0} {1}", "some info", 123);

@@ -74,7 +74,7 @@ namespace Beryll
 
             GameStateMachine::draw();
 
-            Window::getInstance()->finishDraw();
+            Window::getInstance()->flushDraw();
             MainImGUI::getInstance()->endFrame();
             Window::getInstance()->swapWindow();
         // Draw finish

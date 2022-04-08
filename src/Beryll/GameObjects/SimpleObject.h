@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SceneObject.h"
-#include "Beryll/Renderer/Renderer.h"
 
 namespace Beryll
 {
@@ -45,9 +44,6 @@ namespace Beryll
         const uint32_t m_diffSamplerIndexInShader = 0; // diffuse sampler MUST be first in fragment shader
         std::unique_ptr<Texture> m_specTexture;
         const uint32_t m_specSamplerIndexInShader = 1; // specular sampler MUST be second in fragment shader
-
-        glm::mat4 m_MVP{1.0f};
-        glm::mat4 m_modelMatrix{1.0f};
 
         Assimp::Importer m_importer;
         const aiScene* m_scene = nullptr;
